@@ -1,8 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -11,15 +13,56 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JAB-JV-PLY">
+                                <rect key="frame" x="82" y="323" width="250" height="250"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lanchingImg" translatesAutoresizingMaskIntoConstraints="NO" id="Kjm-Hf-ywl">
+                                        <rect key="frame" x="25" y="0.0" width="200" height="200"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="2CC-pV-MtO"/>
+                                            <constraint firstAttribute="height" constant="200" id="u6h-gO-nbA"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movies App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y8O-ju-3gO">
+                                        <rect key="frame" x="25" y="188.5" width="200" height="29.5"/>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="27"/>
+                                        <color key="textColor" systemColor="systemBackgroundColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.21810697309999999" green="0.014581795220000001" blue="0.008455050209" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstItem="Kjm-Hf-ywl" firstAttribute="top" secondItem="JAB-JV-PLY" secondAttribute="top" id="JIN-82-eU2"/>
+                                    <constraint firstItem="Y8O-ju-3gO" firstAttribute="bottom" secondItem="Kjm-Hf-ywl" secondAttribute="bottom" constant="18" id="NeG-Av-d3K"/>
+                                    <constraint firstItem="Y8O-ju-3gO" firstAttribute="trailing" secondItem="Kjm-Hf-ywl" secondAttribute="trailing" id="OLo-UX-Dvm"/>
+                                    <constraint firstItem="Kjm-Hf-ywl" firstAttribute="leading" secondItem="JAB-JV-PLY" secondAttribute="leading" constant="25" id="RRK-Wz-x8w"/>
+                                    <constraint firstItem="Y8O-ju-3gO" firstAttribute="leading" secondItem="Kjm-Hf-ywl" secondAttribute="leading" id="Waz-MA-Nv1"/>
+                                    <constraint firstAttribute="trailing" secondItem="Kjm-Hf-ywl" secondAttribute="trailing" constant="25" id="abc-qr-uRD"/>
+                                    <constraint firstAttribute="width" constant="250" id="iIJ-Eg-ekl"/>
+                                    <constraint firstAttribute="height" constant="250" id="m51-1S-uUo"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" red="0.21810697305082072" green="0.01458179521616304" blue="0.0084550502089243036" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="JAB-JV-PLY" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="w9y-Vf-o3b"/>
+                            <constraint firstItem="JAB-JV-PLY" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="zNG-Tp-zvd"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52.173913043478265" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="lanchingImg" width="166.5" height="166.5"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
