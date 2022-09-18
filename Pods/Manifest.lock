@@ -1,22 +1,26 @@
 PODS:
   - Alamofire (5.6.2)
+  - FSPagerView (0.8.3)
   - SDWebImage (5.13.2):
     - SDWebImage/Core (= 5.13.2)
   - SDWebImage/Core (5.13.2)
 
 DEPENDENCIES:
   - Alamofire
+  - FSPagerView
   - SDWebImage
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - FSPagerView
     - SDWebImage
 
 SPEC CHECKSUMS:
   Alamofire: d368e1ff8a298e6dde360e35a3e68e6c610e7204
+  FSPagerView: 670405b2f18e2a87fa37f20b00de783e562c25a8
   SDWebImage: 72f86271a6f3139cc7e4a89220946489d4b9a866
 
-PODFILE CHECKSUM: 6c0f1a50df9757ee0455912a4822583fb4b430cf
+PODFILE CHECKSUM: 0f496bdc8fce19ecabcc5651dcc87d39b6c5f36d
 
 COCOAPODS: 1.11.3

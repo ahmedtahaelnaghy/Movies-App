@@ -17,7 +17,6 @@ class MovieAPI: BaseAPI<MoviesNetworking>, MovieAPIProtocol {
     
     func getData(completion: @escaping (Result<MoviesModel?, NSError>) -> Void) {
         self.fetchData(target: .getMovies, response: MoviesModel.self) { result in
-            print(result)
             completion(result)
         }
     }

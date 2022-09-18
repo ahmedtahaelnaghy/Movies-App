@@ -7,5 +7,6 @@ target 'Movies App' do
 
 pod 'Alamofire'
 pod 'SDWebImage'
+pod 'FSPagerView'
 
 end
