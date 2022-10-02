@@ -6,18 +6,18 @@
 //
 
 import UIKit
+import Cosmos
 
 class FavoritesTableViewCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
+    @IBOutlet weak var favoriteMovieImage: UIImageView!
+    @IBOutlet weak var favoriteMovieName: UILabel!
+    @IBOutlet weak var favoriteMovieRate: CosmosView!
+    @IBOutlet weak var contentDetailsView: UIView!
+    
+    func configureCell(model: FavoritesModel) {
+        favoriteMovieName.text = model.name
+        favoriteMovieRate.rating = model.rating / 2
+        favoriteMovieImage.image = UIImage(data: model.image)
+    }
 }

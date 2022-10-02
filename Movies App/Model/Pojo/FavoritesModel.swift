@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct FavoritesModel {
+    var image: Data
+    var name: String
+    var rating: Double
+}

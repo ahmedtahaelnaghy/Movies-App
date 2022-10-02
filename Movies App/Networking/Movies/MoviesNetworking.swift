@@ -49,7 +49,3 @@ extension MoviesNetworking: TargetType {
         }
     }
 }
-
-
-///3/movie/616037/reviews?
-//.requestParameters(parameters: ["api_key": "3bfd219a287f476c97bfb68c3b117bf3", "fbclid": "IwAR2kVHEaaq0wgnUlb6FJM0G4wSJAxaCZlKiJwb6Ie626z4OyuSYAd5my6k0"], encoding: URLEncoding.default)

@@ -8,8 +8,6 @@
 import Foundation
 
 class BaseResponse<T: Codable>: Codable {
-    
     var state: String?
     var data: T?
-    
 }

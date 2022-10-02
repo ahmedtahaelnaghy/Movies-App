@@ -1,26 +1,36 @@
 PODS:
   - Alamofire (5.6.2)
+  - Cosmos (23.0.0)
   - FSPagerView (0.8.3)
+  - NVActivityIndicatorView (5.1.1):
+    - NVActivityIndicatorView/Base (= 5.1.1)
+  - NVActivityIndicatorView/Base (5.1.1)
   - SDWebImage (5.13.2):
     - SDWebImage/Core (= 5.13.2)
   - SDWebImage/Core (5.13.2)
 
 DEPENDENCIES:
   - Alamofire
+  - Cosmos
   - FSPagerView
+  - NVActivityIndicatorView
   - SDWebImage
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Cosmos
     - FSPagerView
+    - NVActivityIndicatorView
     - SDWebImage
 
 SPEC CHECKSUMS:
   Alamofire: d368e1ff8a298e6dde360e35a3e68e6c610e7204
+  Cosmos: b5c6a9a637e28a061b54c8f8b1d8529d7d4db73f
   FSPagerView: 670405b2f18e2a87fa37f20b00de783e562c25a8
+  NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   SDWebImage: 72f86271a6f3139cc7e4a89220946489d4b9a866
 
-PODFILE CHECKSUM: 0f496bdc8fce19ecabcc5651dcc87d39b6c5f36d
+PODFILE CHECKSUM: 7093946073e89005d853e13d4a6795147cbcb93f
 
 COCOAPODS: 1.11.3

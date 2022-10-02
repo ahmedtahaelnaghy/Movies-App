@@ -8,79 +8,55 @@
 import UIKit
 import FSPagerView
 import SDWebImage
+import NVActivityIndicatorView
+import Cosmos
 
-class MoviesViewController: UIViewController,FSPagerViewDataSource,FSPagerViewDelegate {
-
-    fileprivate let transformerTypes: [FSPagerViewTransformerType] = [.crossFading,
-                                                                      .zoomOut,
-                                                                      .depth,
-                                                                      .linear,
-                                                                      .overlap,
-                                                                      .ferrisWheel,
-                                                                      .invertedFerrisWheel,
-                                                                      .coverFlow,
-                                                                      .cubic]
-    fileprivate var typeIndex = 0 {
-        didSet {
-            let type = self.transformerTypes[typeIndex]
-            self.pagerView.transformer = FSPagerViewTransformer(type:type)
-            switch type {
-            case .crossFading, .zoomOut, .depth:
-                self.pagerView.itemSize = FSPagerView.automaticSize
-                self.pagerView.decelerationDistance = 1
-            case .linear, .overlap:
-                let transform = CGAffineTransform(scaleX: 0.44, y: 1)
-                self.pagerView.itemSize = self.pagerView.frame.size.applying(transform)
-                self.pagerView.decelerationDistance = FSPagerView.automaticDistance
-            case .ferrisWheel, .invertedFerrisWheel:
-                self.pagerView.itemSize = CGSize(width: 180, height: 140)
-                self.pagerView.decelerationDistance = FSPagerView.automaticDistance
-            case .coverFlow:
-                self.pagerView.itemSize = CGSize(width: 220, height: 170)
-                self.pagerView.decelerationDistance = FSPagerView.automaticDistance
-            case .cubic:
-                let transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-                self.pagerView.itemSize = self.pagerView.frame.size.applying(transform)
-                self.pagerView.decelerationDistance = 1
-            }
-        }
-    }
+class MoviesViewController: UIViewController {
+    
+    @IBOutlet weak var categoriesCollectionView: UICollectionView!
+    @IBOutlet weak var activityIndicatorView: NVActivityIndicatorView!
+    @IBOutlet weak var bestMovieImage: UIImageView!
+    @IBOutlet weak var bestMovieName: UILabel!
+    @IBOutlet weak var bestMovieRate: CosmosView!
+    @IBOutlet weak var bestMovieDescription: UILabel!
     
     @IBOutlet weak var pagerView: FSPagerView! {
         didSet {
             self.pagerView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "cell")
-            self.typeIndex = 4
+            let transform = CGAffineTransform(scaleX: 0.44, y: 1)
+            self.pagerView.itemSize = self.pagerView.frame.size.applying(transform)
+            self.pagerView.decelerationDistance = FSPagerView.automaticDistance
+            pagerView.transformer = FSPagerViewTransformer(type: .overlap)
         }
     }
     
-    @IBOutlet weak var categoriesCollectionView: UICollectionView!
-    
-    @IBOutlet weak var indicator: UIActivityIndicatorView!
-    
     var moviesDataArray = [Movie]()
-    var moviesImagesArray = [String]()
-    
     var categoriesItem: [CategoriesItem] = [
                                             CategoriesItem(item: "All"),
-                                            CategoriesItem(item: "Drama"),
                                             CategoriesItem(item: "Action"),
-                                            CategoriesItem(item: "Comedy")
+                                            CategoriesItem(item: "Animation"),
+                                            CategoriesItem(item: "Biography"),
+                                            CategoriesItem(item: "Comedy"),
+                                            CategoriesItem(item: "Crime"),
+                                            CategoriesItem(item: "Documentary"),
+                                            CategoriesItem(item: "Drama"),
+                                            CategoriesItem(item: "Family"),
+                                            CategoriesItem(item: "Fantasy"),
+                                            CategoriesItem(item: "Horror"),
+                                            CategoriesItem(item: "Music"),
+                                            CategoriesItem(item: "Mystery"),
+                                            CategoriesItem(item: "Romance"),
+                                            CategoriesItem(item: "Thriller"),
+                                            CategoriesItem(item: "Western")
                                            ]
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        let index = self.typeIndex
-        self.typeIndex = index // Manually trigger didSet
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        categoriesCollectionView.register(cells: [CategoriesCollectionViewCell.self])
-        
-        
 
-        
+        bestMovieImage.layer.cornerRadius = 25
+        categoriesCollectionView.register(cells: [CategoriesCollectionViewCell.self])
+        activityIndicatorView.type = .ballRotateChase
+        activityIndicatorView.color = UIColor(named: "AppColor") ?? .red
         categoriesCollectionView.delegate = self
         categoriesCollectionView.dataSource = self
         pagerView.delegate = self
@@ -88,47 +64,22 @@ class MoviesViewController: UIViewController,FSPagerViewDataSource,FSPagerViewDe
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        indicator.startAnimating()
+        activityIndicatorView.startAnimating()
         MovieAPI().getData { [self] result in
+            activityIndicatorView.stopAnimating()
             switch result {
-            case .success(let result):
-                guard let result = result else {return}
-                let data = result.data
-                for movie in data.movies {
-                    moviesDataArray.append(movie)
-                    moviesImagesArray.append(movie.largeCoverImage)
-                    pagerView.reloadData()
-                    indicator.stopAnimating()
-                }
+            case .success(let comingData):
+                moviesDataArray = comingData!.data.movies
+                pagerView.reloadData()
             case .failure(let error):
                 print(error.localizedDescription)
             }
+            
+            bestMovieImage.sd_setImage(with: URL(string: "\(moviesDataArray[5].largeCoverImage)"),
+                                       placeholderImage: UIImage(named: "placeholder.png"))
+            bestMovieName.text = moviesDataArray[5].title
+            bestMovieRate.rating = (moviesDataArray[5].rating / 2)
+            bestMovieDescription.text = moviesDataArray[5].summary
         }
     }
-    
-    
-    func setupCollectionView(cell: CategoriesCollectionViewCell, index: Int) {
-        cell.configerCell(model: categoriesItem[index])
-    }
-    
-    // MARK:- FSPagerViewDataSource
-    
-    public func numberOfItems(in pagerView: FSPagerView) -> Int {
-        return moviesImagesArray.count
-    }
-    
-    public func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
-        let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
-        cell.imageView?.sd_setImage(with: URL(string: "\(moviesImagesArray[index])"), placeholderImage: UIImage(named: "placeholder.png"))
-        cell.imageView?.contentMode = .scaleAspectFit
-        cell.imageView?.clipsToBounds = true
-        return cell
-    }
-    
-    func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
-        pagerView.deselectItem(at: index, animated: true)
-        pagerView.scrollToItem(at: index, animated: true)
-    }
-    
 }

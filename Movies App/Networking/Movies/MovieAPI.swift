@@ -12,7 +12,6 @@ protocol MovieAPIProtocol {
     func getData(completion: @escaping(Result<MoviesModel?, NSError>) -> Void)
 }
 
-
 class MovieAPI: BaseAPI<MoviesNetworking>, MovieAPIProtocol {
     
     func getData(completion: @escaping (Result<MoviesModel?, NSError>) -> Void) {
@@ -20,5 +19,4 @@ class MovieAPI: BaseAPI<MoviesNetworking>, MovieAPIProtocol {
             completion(result)
         }
     }
-    
 }

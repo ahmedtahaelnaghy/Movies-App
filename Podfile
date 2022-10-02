@@ -8,5 +8,7 @@ target 'Movies App' do
 pod 'Alamofire'
 pod 'SDWebImage'
 pod 'FSPagerView'
+pod 'NVActivityIndicatorView'
+pod 'Cosmos'
 
 end

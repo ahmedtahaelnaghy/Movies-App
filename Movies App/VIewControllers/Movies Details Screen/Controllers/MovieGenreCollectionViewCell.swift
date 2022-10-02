@@ -9,9 +9,7 @@ import UIKit
 
 class MovieGenreCollectionViewCell: UICollectionViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
+    @IBOutlet weak var movieGenre: UILabel!
+    
+    
 }

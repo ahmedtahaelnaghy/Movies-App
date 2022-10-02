@@ -17,41 +17,29 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         tabBar.tintColor = UIColor(named: "AppColor")
         
         let moviesViewController = MoviesViewController(nibName: "MoviesViewController", bundle: nil)
-        let categoriesViewController = CategoriesViewController(nibName: "CategoriesViewController", bundle: nil)
+        let allMoviesViewController = AllMoviesViewController(nibName: "AllMoviesViewController", bundle: nil)
         let favoritesViewController = FavoritesViewController(nibName: "FavoritesViewController", bundle: nil)
         let profileViewController = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
         
-        moviesViewController.tabBarItem = UITabBarItem (
-                                                title: nil,
+        moviesViewController.tabBarItem = UITabBarItem (title: nil,
                                                 image: UIImage(named: "Home"),
-                                                selectedImage: UIImage(named: "Home")
-                                                )
+                                                selectedImage: UIImage(named: "Home"))
         
-        categoriesViewController.tabBarItem = UITabBarItem (
-                                                title: nil,
+        allMoviesViewController.tabBarItem = UITabBarItem (title: nil,
                                                 image: UIImage(named: "Categories"),
-                                                selectedImage: UIImage(named: "Categories")
-                                                )
+                                                selectedImage: UIImage(named: "Categories"))
         
-        favoritesViewController.tabBarItem = UITabBarItem (
-                                                title: nil,
+        favoritesViewController.tabBarItem = UITabBarItem (title: nil,
                                                 image: UIImage(named: "Favorite"),
-                                                selectedImage: UIImage(named: "Favorite")
-                                                )
+                                                selectedImage: UIImage(named: "Favorite"))
         
-        
-        profileViewController.tabBarItem = UITabBarItem (
-                                                title: nil,
+        profileViewController.tabBarItem = UITabBarItem (title: nil,
                                                 image: UIImage(named: "Profile"),
-                                                selectedImage: UIImage(named: "Profile")
-                                                )
+                                                selectedImage: UIImage(named: "Profile"))
         
-        self.setViewControllers([moviesViewController, categoriesViewController, favoritesViewController, profileViewController], animated: false)
-        
+        self.setViewControllers([moviesViewController, allMoviesViewController, favoritesViewController, profileViewController], animated: false)
         
     }
-    
-    
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         SimpleAnnimationWhenSelectItem(item)

@@ -11,21 +11,31 @@ import NVActivityIndicatorView
 class AllMoviesViewController: UIViewController {
 
     @IBOutlet weak var allMoviesCollectionView: UICollectionView!
-    
     @IBOutlet weak var activityIndicatorView: NVActivityIndicatorView!
     
-    
+    var allMoviesDataArray = [Movie]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        allMoviesCollectionView.register(cells: [AllMoviesCollectionViewCell.self])
+        collectionViewSetupUI(collectionView: allMoviesCollectionView)
         activityIndicatorView.type = .ballRotateChase
-        activityIndicatorView.color = UIColor(named: "AppColor") ?? .red
-        
+        activityIndicatorView.color = UIColor(named: "AppColor") ?? .green
+        allMoviesCollectionView.delegate = self
+        allMoviesCollectionView.dataSource = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        
-        
-        
+        activityIndicatorView.startAnimating()
+        MovieAPI().getData { [self] (result) in
+            activityIndicatorView.stopAnimating()
+            switch result {
+            case .success(let comingData):
+                allMoviesDataArray = comingData!.data.movies
+                allMoviesCollectionView.reloadData()
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
 }
