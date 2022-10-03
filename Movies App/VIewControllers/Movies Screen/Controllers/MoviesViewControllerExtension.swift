@@ -52,7 +52,8 @@ extension MoviesViewController: FSPagerViewDataSource, FSPagerViewDelegate {
     }
     
     func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
-        pagerView.deselectItem(at: index, animated: true)
-        pagerView.scrollToItem(at: index, animated: true)
+        let moviesDetailsViewController = MoviesDetailsViewController(nibName: "MoviesDetailsViewController", bundle: nil)
+        moviesDetailsViewController.comingData = moviesDataArray[index]
+        navigationController?.pushViewController(moviesDetailsViewController, animated: true)
     }
 }
