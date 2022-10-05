@@ -8,23 +8,37 @@
 import UIKit
 
 class TabBarController: UITabBarController, UITabBarControllerDelegate {
-
+    
+    let moviesViewController = MoviesViewController(nibName: "MoviesViewController", bundle: nil)
+    let allMoviesViewController = AllMoviesViewController(nibName: "AllMoviesViewController", bundle: nil)
+    let favoritesViewController = FavoritesViewController(nibName: "FavoritesViewController", bundle: nil)
+    let profileViewController = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        tabBarItem.imageInsets = UIEdgeInsets(top: 5, left: 10, bottom: -5, right: 0)
-
-        tabBar.tintColor = UIColor(named: "AppColor")
+        let controllers = [
+                           moviesViewController,
+                           allMoviesViewController,
+                           favoritesViewController,
+                           profileViewController
+                          ]
         
-        let moviesViewController = MoviesViewController(nibName: "MoviesViewController", bundle: nil)
-        let allMoviesViewController = AllMoviesViewController(nibName: "AllMoviesViewController", bundle: nil)
-        let favoritesViewController = FavoritesViewController(nibName: "FavoritesViewController", bundle: nil)
-        let profileViewController = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
-        
+        setTabBarItems(controllers)
+        tabBarItemsColor()
+        setNavigationControllerToTabBarScreens(controllers)
+    }
+    
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        SimpleAnnimationWhenSelectItem(item)
+    }
+    
+    // MARK: Add and show items in tabBar
+    func setTabBarItems(_ controllers: [UIViewController]) {
         moviesViewController.tabBarItem = UITabBarItem (title: nil,
                                                 image: UIImage(named: "Home"),
                                                 selectedImage: UIImage(named: "Home"))
-        
+
         allMoviesViewController.tabBarItem = UITabBarItem (title: nil,
                                                 image: UIImage(named: "Categories"),
                                                 selectedImage: UIImage(named: "Categories"))
@@ -37,14 +51,21 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
                                                 image: UIImage(named: "Profile"),
                                                 selectedImage: UIImage(named: "Profile"))
         
-        self.setViewControllers([moviesViewController, allMoviesViewController, favoritesViewController, profileViewController], animated: false)
-        
+        self.setViewControllers(controllers, animated: false)
     }
     
-    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        SimpleAnnimationWhenSelectItem(item)
+    // MARK: Set tabBar Items color
+    func tabBarItemsColor() {
+        tabBar.tintColor = UIColor(named: "AppColor")
     }
     
+    // MARK: Set Navigation to all screens in tabBAr
+    func setNavigationControllerToTabBarScreens(_ controllers: [UIViewController]) {
+        viewControllers = controllers.map({ UINavigationController(rootViewController: $0)
+        })
+    }
+    
+    // MARK: TabBar items animation when an item tapped
     func SimpleAnnimationWhenSelectItem(_ item: UITabBarItem){
         guard let barItemView = item.value(forKey: "view") as? UIView else { return }
         let timeInterval: TimeInterval = 0.3

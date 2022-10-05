@@ -28,6 +28,19 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 165
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            favoritesArray.remove(at: indexPath.row)
+            managedObjectContext.delete(coreDataArray[indexPath.row])
+            do {
+                try managedObjectContext.save()
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
 }
 
 extension FavoritesViewController {

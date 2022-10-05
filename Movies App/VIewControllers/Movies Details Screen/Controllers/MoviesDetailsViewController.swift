@@ -32,13 +32,34 @@ class MoviesDetailsViewController: UIViewController {
         super.viewDidLoad()
         appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         managedObjectContext = appDelegate.persistentContainer.viewContext
-        navigationBarSetup()
+        navigationBarItemsSetup()
         viewSetupDesign()
         setDetailsDataInViewController()
         favoriteBtnDesign()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+//        chekInCoreData()
+    }
+    
     @IBAction func favoriteTaped(_ sender: Any) {
+        coreDataSaving()
+    }
+    
+    
+    func chekInCoreData() {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavoriteMoviesEntity")
+        let predicate = NSPredicate(format: "name == %@", comingData.title)
+        fetchRequest.predicate = predicate
+        do {
+            let movie = try managedObjectContext.fetch(fetchRequest)
+            let name = movie[0].value(forKey: "name")
+        } catch let error as NSError {
+            print("NNNNNNNNNNNNNN")
+        }
+    }
+    
+    func coreDataSaving() {
         let movieImage = movieImage.image?.pngData()
         let movieName = movieName.text
         let movieRating = comingData.rating
@@ -47,6 +68,7 @@ class MoviesDetailsViewController: UIViewController {
         movie.setValue(movieImage, forKey: "image")
         movie.setValue(movieName, forKey: "name")
         movie.setValue(movieRating, forKey: "rating")
+        movie.setValue(true, forKey: "isFavorite")
         do {
             try managedObjectContext.save()
         } catch let error as NSError {
@@ -58,7 +80,7 @@ class MoviesDetailsViewController: UIViewController {
 
 extension MoviesDetailsViewController {
     
-    private func navigationBarSetup() {
+    private func navigationBarItemsSetup() {
         navigationItem.title = "Details"
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor(named: "AppColor") ?? .green]
         navigationController?.navigationBar.tintColor = UIColor(named: "AppColor")

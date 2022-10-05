@@ -19,6 +19,8 @@ class FavoritesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Favorites"
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor(named: "AppColor") ?? .green]
         appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         managedObjectContext = appDelegate.persistentContainer.viewContext
         favoritesTableView.register(UINib(nibName: "FavoritesTableViewCell", bundle: nil),

@@ -17,6 +17,10 @@ class AllMoviesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.title = "All Movies"
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor(named: "AppColor") ?? .green]
+        
         allMoviesCollectionView.register(cells: [AllMoviesCollectionViewCell.self])
         collectionViewSetupUI(collectionView: allMoviesCollectionView)
         activityIndicatorView.type = .ballRotateChase

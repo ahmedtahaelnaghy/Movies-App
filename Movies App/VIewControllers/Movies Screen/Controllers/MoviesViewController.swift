@@ -53,6 +53,9 @@ class MoviesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationItem.title = "Home"
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor(named: "AppColor") ?? .green]
+        
         bestMovieImage.layer.cornerRadius = 25
         categoriesCollectionView.register(cells: [CategoriesCollectionViewCell.self])
         activityIndicatorView.type = .ballRotateChase
