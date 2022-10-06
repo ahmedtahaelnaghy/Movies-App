@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: All Movies collection view implementation.
 extension AllMoviesViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func setUpCollectionView(cell: AllMoviesCollectionViewCell, index: Int) {

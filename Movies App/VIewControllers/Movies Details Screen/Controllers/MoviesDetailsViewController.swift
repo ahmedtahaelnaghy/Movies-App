@@ -30,33 +30,16 @@ class MoviesDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavigationBarTitle(title: "Details", isLargeTitle: false)
         appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         managedObjectContext = appDelegate.persistentContainer.viewContext
-        navigationBarItemsSetup()
         viewSetupDesign()
-        setDetailsDataInViewController()
+        setDataInViewController()
         favoriteBtnDesign()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-//        chekInCoreData()
     }
     
     @IBAction func favoriteTaped(_ sender: Any) {
         coreDataSaving()
-    }
-    
-    
-    func chekInCoreData() {
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavoriteMoviesEntity")
-        let predicate = NSPredicate(format: "name == %@", comingData.title)
-        fetchRequest.predicate = predicate
-        do {
-            let movie = try managedObjectContext.fetch(fetchRequest)
-            let name = movie[0].value(forKey: "name")
-        } catch let error as NSError {
-            print("NNNNNNNNNNNNNN")
-        }
     }
     
     func coreDataSaving() {
@@ -74,38 +57,5 @@ class MoviesDetailsViewController: UIViewController {
         } catch let error as NSError {
             print(error.localizedDescription)
         }
-    }
-}
-
-
-extension MoviesDetailsViewController {
-    
-    private func navigationBarItemsSetup() {
-        navigationItem.title = "Details"
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor(named: "AppColor") ?? .green]
-        navigationController?.navigationBar.tintColor = UIColor(named: "AppColor")
-    }
-    
-    private func favoriteBtnDesign() {
-        favoriteBtn.layer.cornerRadius = favoriteBtn.frame.height / 2
-    }
-    
-    private func viewSetupDesign() {
-        let viewsArray = [ratingView, releasedYearView, durationView]
-        _ = viewsArray.map {
-            $0!.layer.cornerRadius = 20
-            $0!.layer.borderWidth = 1
-            $0!.layer.borderColor = UIColor(named: "AppColor")?.cgColor ?? UIColor.green.cgColor
-        }
-    }
-    
-    private func setDetailsDataInViewController() {
-        movieRating.text = "\(comingData.rating / 2)/5"
-        movieReleasedYear.text = "\(comingData.year)"
-        movieDuration.text = "\(comingData.runtime) min"
-        movieName.text = comingData.title
-        movieDescription.text = comingData.summary
-        movieImage.sd_setImage(with: URL(string: "\(comingData.largeCoverImage)"),
-                               placeholderImage: UIImage(named: "placeholder.png"))
     }
 }

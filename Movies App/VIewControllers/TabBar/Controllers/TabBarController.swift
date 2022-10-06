@@ -61,8 +61,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     // MARK: Set Navigation to all screens in tabBAr
     func setNavigationControllerToTabBarScreens(_ controllers: [UIViewController]) {
-        viewControllers = controllers.map({ UINavigationController(rootViewController: $0)
-        })
+        viewControllers = controllers.map { UINavigationController(rootViewController: $0) }
     }
     
     // MARK: TabBar items animation when an item tapped

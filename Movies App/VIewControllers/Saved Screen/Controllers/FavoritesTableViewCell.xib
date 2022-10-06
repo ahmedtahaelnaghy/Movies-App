@@ -21,17 +21,17 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4eZ-61-fyW">
                         <rect key="frame" x="80" y="10" width="446" height="200"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="r8A-zV-Csj">
-                                <rect key="frame" x="75" y="71" width="361" height="58.333333333333343"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="r8A-zV-Csj">
+                                <rect key="frame" x="75" y="73.333333333333329" width="361" height="53.333333333333329"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XIA-gk-SfS">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XIA-gk-SfS">
                                         <rect key="frame" x="0.0" y="0.0" width="361" height="21.666666666666668"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yqt-pf-SA7" customClass="CosmosView" customModule="Cosmos">
-                                        <rect key="frame" x="0.0" y="36.666666666666671" width="361" height="21.666666666666671"/>
+                                        <rect key="frame" x="0.0" y="31.666666666666671" width="361" height="21.666666666666671"/>
                                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="image" keyPath="filledImage" value="Fill-Star"/>

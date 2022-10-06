@@ -10,5 +10,6 @@ pod 'SDWebImage'
 pod 'FSPagerView'
 pod 'NVActivityIndicatorView'
 pod 'Cosmos'
+pod 'SkeletonView'
 
 end

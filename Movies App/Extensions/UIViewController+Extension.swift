@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
 extension UIViewController {
     
@@ -34,5 +35,21 @@ extension UIViewController {
         alertController.view.tintColor = UIColor(named: "AppColor")
         alertController.addAction(alertAction)
         present(alertController, animated: true, completion: nil)
+    }
+    
+    // MARK: Activity Indicator shape
+    func setActivityIndicator(_ activityIndicator: NVActivityIndicatorView) {
+        activityIndicator.type = .ballRotateChase
+        activityIndicator.color = UIColor(named: "AppColor") ?? .green
+    }
+    
+    //MARK: Set navigation bar title.
+    func setNavigationBarTitle(title: String, isLargeTitle: Bool) {
+        navigationItem.title = title
+        navigationController?.navigationBar.prefersLargeTitles = isLargeTitle
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor(named: "AppColor") ?? .green]
+        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor(named: "AppColor") ?? .green]
+        navigationController?.navigationBar.tintColor = UIColor(named: "AppColor")
+
     }
 }

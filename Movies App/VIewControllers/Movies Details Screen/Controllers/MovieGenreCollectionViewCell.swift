@@ -11,5 +11,4 @@ class MovieGenreCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var movieGenre: UILabel!
     
-    
 }

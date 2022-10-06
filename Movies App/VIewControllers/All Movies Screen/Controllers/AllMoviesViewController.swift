@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 import NVActivityIndicatorView
 
 class AllMoviesViewController: UIViewController {
@@ -17,14 +18,10 @@ class AllMoviesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationItem.title = "All Movies"
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor(named: "AppColor") ?? .green]
-        
+        setNavigationBarTitle(title: "Movies", isLargeTitle: true)
         allMoviesCollectionView.register(cells: [AllMoviesCollectionViewCell.self])
         collectionViewSetupUI(collectionView: allMoviesCollectionView)
-        activityIndicatorView.type = .ballRotateChase
-        activityIndicatorView.color = UIColor(named: "AppColor") ?? .green
+        setActivityIndicator(activityIndicatorView)
         allMoviesCollectionView.delegate = self
         allMoviesCollectionView.dataSource = self
     }

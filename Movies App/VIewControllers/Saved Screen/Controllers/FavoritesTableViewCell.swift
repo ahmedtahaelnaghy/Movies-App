@@ -17,8 +17,7 @@ class FavoritesTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        tableViewCellContentDesign(view: contentDetailsView, cornerRadius: 30, borderWidth: 0.5, borderColor: UIColor(named: "AppColor") ?? .green)
-        tableViewCellContentDesign(view: favoriteMovieImage, cornerRadius: 25, masksToBounds: true)
+        tableViewCellContentDesign(view: [contentDetailsView, favoriteMovieImage], cornerRadius: 30, borderWidth: 0.5, masksToBounds: true, borderColor: UIColor(named: "AppColor") ?? .green)
     }
     
     func configureCell(model: FavoritesModel) {
@@ -28,10 +27,12 @@ class FavoritesTableViewCell: UITableViewCell {
     }
     
     // MARK: TableViewCell Design
-    func tableViewCellContentDesign(view: AnyObject, cornerRadius: CGFloat? = nil, borderWidth: CGFloat? = nil, masksToBounds: Bool? = nil, borderColor: UIColor? = nil) {
-        view.layer.cornerRadius = cornerRadius ?? 0
-        view.layer.borderWidth = borderWidth ?? 0
-        view.layer.borderColor = borderColor?.cgColor
-        view.layer.masksToBounds = masksToBounds ?? false
+    func tableViewCellContentDesign(view: [AnyObject], cornerRadius: CGFloat? = nil, borderWidth: CGFloat? = nil, masksToBounds: Bool? = nil, borderColor: UIColor? = nil) {
+        _ = view.map {
+            $0.layer.cornerRadius = cornerRadius ?? 0
+            $0.layer.borderWidth = borderWidth ?? 0
+            $0.layer.borderColor = borderColor?.cgColor
+            $0.layer.masksToBounds = masksToBounds ?? false
+        }
     }
 }
