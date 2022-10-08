@@ -22,7 +22,7 @@ extension UIViewController {
     func collectionViewSetupUI(collectionView: UICollectionView) {
         let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
         item.contentInsets = NSDirectionalEdgeInsets(top: 3, leading: 5, bottom: 3, trailing: 5)
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.4)), subitem: item, count: 2)
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.42)), subitem: item, count: 2)
         let section = NSCollectionLayoutSection(group: group)
         let layout = UICollectionViewCompositionalLayout(section: section)
         collectionView.collectionViewLayout = layout
@@ -47,9 +47,20 @@ extension UIViewController {
     func setNavigationBarTitle(title: String, isLargeTitle: Bool) {
         navigationItem.title = title
         navigationController?.navigationBar.prefersLargeTitles = isLargeTitle
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor(named: "AppColor") ?? .green]
-        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor(named: "AppColor") ?? .green]
+        setNavigationLargeTitleTextAttributes()
+        setNavigationtitleTextAttributes()
         navigationController?.navigationBar.tintColor = UIColor(named: "AppColor")
 
+    }
+}
+
+private extension UIViewController {
+    
+    func setNavigationLargeTitleTextAttributes() {
+        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor(named: "AppColor") ?? .green]
+    }
+    
+    func setNavigationtitleTextAttributes() {
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor(named: "AppColor") ?? .green]
     }
 }

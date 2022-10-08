@@ -35,6 +35,16 @@ extension MoviesNetworking: TargetType {
         }
     }
     
+    
+//    var parameters: Parameters? {
+//        var params = Parameters()
+//        switch self {
+//        case .getMovies:
+//            break
+//        }
+//        return params
+//    }
+    
     var task: Task {
         switch self {
         case .getMovies:

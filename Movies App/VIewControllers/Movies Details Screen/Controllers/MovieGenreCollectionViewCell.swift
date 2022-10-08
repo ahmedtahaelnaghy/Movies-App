@@ -11,4 +11,7 @@ class MovieGenreCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var movieGenre: UILabel!
     
+    func configureCell(model: String) {
+        movieGenre.text = model
+    }
 }

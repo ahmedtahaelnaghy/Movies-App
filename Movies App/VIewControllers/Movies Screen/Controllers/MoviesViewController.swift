@@ -7,7 +7,6 @@
 
 import UIKit
 import FSPagerView
-import SDWebImage
 import NVActivityIndicatorView
 import Cosmos
 
@@ -52,10 +51,7 @@ class MoviesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        navigationItem.title = "Home"
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor(named: "AppColor") ?? .green]
-        
+        setNavigationBarTitle(title: "Popular Now", isLargeTitle: true)
         bestMovieImage.layer.cornerRadius = 25
         categoriesCollectionView.register(cells: [CategoriesCollectionViewCell.self])
         activityIndicatorView.type = .ballRotateChase
@@ -78,8 +74,7 @@ class MoviesViewController: UIViewController {
                 print(error.localizedDescription)
             }
             
-            bestMovieImage.sd_setImage(with: URL(string: "\(moviesDataArray[5].largeCoverImage)"),
-                                       placeholderImage: UIImage(named: "placeholder.png"))
+            bestMovieImage.setImage(for: "\(moviesDataArray[5].largeCoverImage)")
             bestMovieName.text = moviesDataArray[5].title
             bestMovieRate.rating = (moviesDataArray[5].rating / 2)
             bestMovieDescription.text = moviesDataArray[5].summary

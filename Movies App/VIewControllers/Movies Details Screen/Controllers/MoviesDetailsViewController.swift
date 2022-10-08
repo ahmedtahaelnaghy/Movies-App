@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SDWebImage
 import CoreData
 
 class MoviesDetailsViewController: UIViewController {
@@ -24,15 +23,17 @@ class MoviesDetailsViewController: UIViewController {
     @IBOutlet weak var moviesGenreCollectionView: UICollectionView!
     
     var comingData: Movie!
-    var genderArray: String!
     var managedObjectContext: NSManagedObjectContext!
     var appDelegate: AppDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavigationBarTitle(title: "Details", isLargeTitle: false)
+        setNavigationBarTitle(title: "Details", isLargeTitle: true)
+        moviesGenreCollectionView.register(cells: [MovieGenreCollectionViewCell.self])
         appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         managedObjectContext = appDelegate.persistentContainer.viewContext
+        moviesGenreCollectionView.delegate = self
+        moviesGenreCollectionView.dataSource = self
         viewSetupDesign()
         setDataInViewController()
         favoriteBtnDesign()
@@ -57,5 +58,31 @@ class MoviesDetailsViewController: UIViewController {
         } catch let error as NSError {
             print(error.localizedDescription)
         }
+    }
+}
+
+extension MoviesDetailsViewController {
+    
+    func favoriteBtnDesign() {
+        favoriteBtn.layer.cornerRadius = favoriteBtn.frame.height / 2
+    }
+    
+    // MARK: short details views design
+    func viewSetupDesign() {
+        let viewsArray = [ratingView, releasedYearView, durationView]
+        _ = viewsArray.map {
+            $0!.layer.cornerRadius = 20
+            $0!.layer.borderWidth = 1
+            $0!.layer.borderColor = UIColor(named: "AppColor")?.cgColor ?? UIColor.green.cgColor
+        }
+    }
+    
+    func setDataInViewController() {
+        movieRating.text = "\(comingData.rating / 2)/5"
+        movieReleasedYear.text = "\(comingData.year)"
+        movieDuration.text = "\(comingData.runtime) min"
+        movieName.text = comingData.title
+        movieDescription.text = comingData.summary
+        movieImage.setImage(for: comingData.largeCoverImage)
     }
 }

@@ -10,3 +10,7 @@ import Foundation
 struct CategoriesItem {
     var item: String
 }
+
+struct Genre {
+    var genreItem: String
+}

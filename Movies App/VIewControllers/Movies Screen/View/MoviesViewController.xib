@@ -32,13 +32,8 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ni5-Vo-VSf">
                             <rect key="frame" x="0.0" y="0.0" width="406" height="750"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popular Now" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fep-ND-zu1">
-                                    <rect key="frame" x="20" y="61" width="172.5" height="36"/>
-                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="TqR-VO-L3t">
-                                    <rect key="frame" x="20" y="117" width="381" height="50"/>
+                                    <rect key="frame" x="20" y="66" width="381" height="50"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="50" id="RZR-vd-pI6"/>
@@ -51,7 +46,7 @@
                                     </collectionViewFlowLayout>
                                 </collectionView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tBX-MK-kXZ" customClass="FSPagerView" customModule="FSPagerView">
-                                    <rect key="frame" x="0.0" y="197" width="406" height="300"/>
+                                    <rect key="frame" x="0.0" y="146" width="406" height="300"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1cp-RH-S1m" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
                                             <rect key="frame" x="183" y="130" width="40" height="40"/>
@@ -73,13 +68,13 @@
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Viewer's choice" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7c-on-qrz">
-                                    <rect key="frame" x="20" y="522" width="142" height="24"/>
+                                    <rect key="frame" x="20" y="471" width="142" height="24"/>
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Bo-Ao-zDa">
-                                    <rect key="frame" x="20" y="561" width="366" height="200"/>
+                                    <rect key="frame" x="20" y="510" width="366" height="200"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7OJ-PS-dND">
                                             <rect key="frame" x="0.0" y="10" width="150" height="180"/>
@@ -130,20 +125,18 @@
                                 </view>
                             </subviews>
                             <constraints>
+                                <constraint firstItem="TqR-VO-L3t" firstAttribute="top" secondItem="Ni5-Vo-VSf" secondAttribute="topMargin" constant="10" id="1gM-cZ-8md"/>
                                 <constraint firstAttribute="trailing" secondItem="tBX-MK-kXZ" secondAttribute="trailing" id="7Ub-iV-dOT"/>
                                 <constraint firstAttribute="trailing" secondItem="0Bo-Ao-zDa" secondAttribute="trailing" constant="20" id="KBq-OV-xOH"/>
-                                <constraint firstItem="fep-ND-zu1" firstAttribute="leading" secondItem="Ni5-Vo-VSf" secondAttribute="leading" constant="20" id="VCy-vI-Xth"/>
                                 <constraint firstItem="0Bo-Ao-zDa" firstAttribute="top" secondItem="e7c-on-qrz" secondAttribute="bottom" constant="15" id="ZeZ-Wc-xaL"/>
                                 <constraint firstItem="e7c-on-qrz" firstAttribute="top" secondItem="tBX-MK-kXZ" secondAttribute="bottom" constant="25" id="btA-9k-0LD"/>
+                                <constraint firstItem="TqR-VO-L3t" firstAttribute="leading" secondItem="Ni5-Vo-VSf" secondAttribute="leading" constant="20" id="dId-Lx-3yZ"/>
                                 <constraint firstItem="tBX-MK-kXZ" firstAttribute="top" secondItem="TqR-VO-L3t" secondAttribute="bottom" constant="30" id="ibz-RX-gKl"/>
                                 <constraint firstAttribute="trailing" secondItem="TqR-VO-L3t" secondAttribute="trailing" constant="5" id="jLt-cD-GP3"/>
-                                <constraint firstItem="fep-ND-zu1" firstAttribute="top" secondItem="Ni5-Vo-VSf" secondAttribute="topMargin" constant="5" id="oI7-bF-n11"/>
-                                <constraint firstItem="TqR-VO-L3t" firstAttribute="leading" secondItem="fep-ND-zu1" secondAttribute="leading" id="sKn-4W-A5U"/>
                                 <constraint firstItem="0Bo-Ao-zDa" firstAttribute="leading" secondItem="Ni5-Vo-VSf" secondAttribute="leading" constant="20" id="szP-tD-pkc"/>
                                 <constraint firstAttribute="height" constant="750" id="w7D-eu-CbW"/>
                                 <constraint firstItem="tBX-MK-kXZ" firstAttribute="leading" secondItem="Ni5-Vo-VSf" secondAttribute="leading" id="xjS-lx-tuR"/>
                                 <constraint firstItem="e7c-on-qrz" firstAttribute="leading" secondItem="Ni5-Vo-VSf" secondAttribute="leading" constant="20" id="ybM-KZ-X7l"/>
-                                <constraint firstItem="TqR-VO-L3t" firstAttribute="top" secondItem="fep-ND-zu1" secondAttribute="bottom" constant="20" id="yge-hs-7FG"/>
                             </constraints>
                         </view>
                     </subviews>

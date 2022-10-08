@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TabBarController: UITabBarController, UITabBarControllerDelegate {
+final class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     let moviesViewController = MoviesViewController(nibName: "MoviesViewController", bundle: nil)
     let allMoviesViewController = AllMoviesViewController(nibName: "AllMoviesViewController", bundle: nil)
@@ -16,56 +16,39 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let controllers = [
-                           moviesViewController,
-                           allMoviesViewController,
-                           favoritesViewController,
-                           profileViewController
-                          ]
-        
-        setTabBarItems(controllers)
-        tabBarItemsColor()
-        setNavigationControllerToTabBarScreens(controllers)
+        tabBar.tintColor = UIColor(named: "AppColor")
+        setTabBar()
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         SimpleAnnimationWhenSelectItem(item)
     }
     
-    // MARK: Add and show items in tabBar
-    func setTabBarItems(_ controllers: [UIViewController]) {
-        moviesViewController.tabBarItem = UITabBarItem (title: nil,
-                                                image: UIImage(named: "Home"),
-                                                selectedImage: UIImage(named: "Home"))
-
-        allMoviesViewController.tabBarItem = UITabBarItem (title: nil,
-                                                image: UIImage(named: "Categories"),
-                                                selectedImage: UIImage(named: "Categories"))
+    // MARK: Add navigation to all screens and set images in all tabs.
+    func setTabBar() {
+        let controllers = [
+                            moviesViewController,
+                            allMoviesViewController,
+                            favoritesViewController,
+                            profileViewController
+                          ]
         
-        favoritesViewController.tabBarItem = UITabBarItem (title: nil,
-                                                image: UIImage(named: "Favorite"),
-                                                selectedImage: UIImage(named: "Favorite"))
-        
-        profileViewController.tabBarItem = UITabBarItem (title: nil,
-                                                image: UIImage(named: "Profile"),
-                                                selectedImage: UIImage(named: "Profile"))
-        
-        self.setViewControllers(controllers, animated: false)
-    }
-    
-    // MARK: Set tabBar Items color
-    func tabBarItemsColor() {
-        tabBar.tintColor = UIColor(named: "AppColor")
-    }
-    
-    // MARK: Set Navigation to all screens in tabBAr
-    func setNavigationControllerToTabBarScreens(_ controllers: [UIViewController]) {
         viewControllers = controllers.map { UINavigationController(rootViewController: $0) }
+        
+        setTabBarItem(for: 0, image: "Home", selectedImage: "Home")
+        setTabBarItem(for: 1, image: "Categories", selectedImage: "Categories")
+        setTabBarItem(for: 2, image: "Favorite", selectedImage: "Favorite")
+        setTabBarItem(for: 3, image: "Profile", selectedImage: "Profile")
+    }
+    
+    // MARK: Set tabBar image and selected image.
+    func setTabBarItem(for index: Int, image: String, selectedImage: String) {
+        tabBar.items?[index].image = UIImage(named: image)
+        tabBar.items?[index].selectedImage = UIImage(named: selectedImage)
     }
     
     // MARK: TabBar items animation when an item tapped
-    func SimpleAnnimationWhenSelectItem(_ item: UITabBarItem){
+    func SimpleAnnimationWhenSelectItem(_ item: UITabBarItem) {
         guard let barItemView = item.value(forKey: "view") as? UIView else { return }
         let timeInterval: TimeInterval = 0.3
         let propertyAnimator = UIViewPropertyAnimator(duration: timeInterval, dampingRatio: 0.5) {
