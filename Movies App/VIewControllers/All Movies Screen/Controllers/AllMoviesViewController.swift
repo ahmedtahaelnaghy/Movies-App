@@ -28,7 +28,7 @@ class AllMoviesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         activityIndicatorView.startAnimating()
-        MovieAPI().getData { [self] (result) in
+        MovieAPI().getData(genreName: "") { [self] (result) in
             activityIndicatorView.stopAnimating()
             switch result {
             case .success(let comingData):

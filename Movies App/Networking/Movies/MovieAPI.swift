@@ -9,13 +9,12 @@ import Foundation
 import Alamofire
 
 protocol MovieAPIProtocol {
-    func getData(completion: @escaping(Result<MoviesModel?, NSError>) -> Void)
+    func getData(genreName: String, completion: @escaping(Result<MoviesModel?, NSError>) -> Void)
 }
 
 class MovieAPI: BaseAPI<MoviesNetworking>, MovieAPIProtocol {
-    
-    func getData(completion: @escaping (Result<MoviesModel?, NSError>) -> Void) {
-        self.fetchData(target: .getMovies, response: MoviesModel.self) { result in
+    func getData(genreName: String, completion: @escaping (Result<MoviesModel?, NSError>) -> Void) {
+        self.fetchData(target: .getMovies(genre: genreName), response: MoviesModel.self) { result in
             completion(result)
         }
     }

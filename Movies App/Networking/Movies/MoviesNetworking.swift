@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 enum MoviesNetworking {
-    case getMovies
+    case getMovies(genre: String)
 }
 
 extension MoviesNetworking: TargetType {
@@ -35,7 +35,6 @@ extension MoviesNetworking: TargetType {
         }
     }
     
-    
 //    var parameters: Parameters? {
 //        var params = Parameters()
 //        switch self {
@@ -47,8 +46,8 @@ extension MoviesNetworking: TargetType {
     
     var task: Task {
         switch self {
-        case .getMovies:
-            return .requestPlain
+        case .getMovies(let genre):
+            return .requestParameters(parameters: ["genre": genre], encoding: URLEncoding.default)
         }
     }
     

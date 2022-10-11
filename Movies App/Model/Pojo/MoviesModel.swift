@@ -20,7 +20,7 @@ struct DataClass: Codable {
 // MARK: - Movie
 struct Movie: Codable {
     let id: Int
-    let url, title: String
+    let title: String
     let year: Int
     let rating: Double
     let runtime: Int
@@ -30,8 +30,7 @@ struct Movie: Codable {
     let largeCoverImage: String
 
     enum CodingKeys: String, CodingKey {
-        case id, url
-        case title
+        case id, title
         case year, rating, runtime, genres, summary
         case backgroundImage = "background_image"
         case backgroundImageOriginal = "background_image_original"

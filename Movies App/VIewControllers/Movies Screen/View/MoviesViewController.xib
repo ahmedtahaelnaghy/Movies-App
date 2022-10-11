@@ -73,7 +73,7 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Bo-Ao-zDa">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Bo-Ao-zDa" customClass="UIControl">
                                     <rect key="frame" x="20" y="510" width="366" height="200"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7OJ-PS-dND">
@@ -122,6 +122,9 @@
                                         <constraint firstItem="CRS-Qf-bUi" firstAttribute="top" secondItem="BfJ-CV-2Md" secondAttribute="bottom" constant="10" id="rOx-4T-pPT"/>
                                         <constraint firstItem="7OJ-PS-dND" firstAttribute="leading" secondItem="0Bo-Ao-zDa" secondAttribute="leading" id="rSf-KD-OeO"/>
                                     </constraints>
+                                    <connections>
+                                        <action selector="TopRatingMovieTapped:" destination="-1" eventType="touchUpInside" id="KTw-HW-bAy"/>
+                                    </connections>
                                 </view>
                             </subviews>
                             <constraints>
@@ -166,11 +169,6 @@
             <point key="canvasLocation" x="-275" y="82"/>
         </activityIndicatorView>
     </objects>
-    <designables>
-        <designable name="CRS-Qf-bUi">
-            <size key="intrinsicContentSize" width="120" height="20"/>
-        </designable>
-    </designables>
     <resources>
         <image name="Fill-Star" width="29" height="29"/>
         <image name="Star" width="29" height="29"/>

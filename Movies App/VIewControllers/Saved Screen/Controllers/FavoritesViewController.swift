@@ -34,10 +34,15 @@ class FavoritesViewController: UIViewController {
             favoritesArray.removeAll()
             coreDataArray = try managedObjectContext.fetch(fetchData)
             for movie in coreDataArray {
-                let image = movie.value(forKey: "image") as! Data
-                let name = movie.value(forKey: "name") as! String
-                let rating = movie.value(forKey: "rating") as! Double
-                let movieObject = FavoritesModel(image: image, name: name, rating: rating)
+                guard let id = movie.value(forKey: "id") as? Int else { return }
+                guard let image = movie.value(forKey: "image") as? Data else { return }
+                guard let name = movie.value(forKey: "name") as? String else { return }
+                guard let rating = movie.value(forKey: "rating") as? Double else { return }
+                guard let summary = movie.value(forKey: "summary") as? String else { return }
+                guard let runtime = movie.value(forKey: "runtime") as? Int else { return }
+                guard let year = movie.value(forKey: "year") as? Int else { return }
+                guard let isFavorite = movie.value(forKey: "isFavorite") as? Bool else { return }
+                let movieObject = FavoritesModel(id: id, image: image, name: name, rating: rating, summary: summary, runtime: runtime, year: year, isFavorite: isFavorite)
                 favoritesArray.append(movieObject)
             }
             favoritesTableView.reloadData()

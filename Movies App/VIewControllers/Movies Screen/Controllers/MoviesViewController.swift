@@ -13,6 +13,7 @@ import Cosmos
 class MoviesViewController: UIViewController {
     
     @IBOutlet weak var categoriesCollectionView: UICollectionView!
+    
     @IBOutlet weak var activityIndicatorView: NVActivityIndicatorView!
     @IBOutlet weak var bestMovieImage: UIImageView!
     @IBOutlet weak var bestMovieName: UILabel!
@@ -30,9 +31,11 @@ class MoviesViewController: UIViewController {
     }
     
     var moviesDataArray = [Movie]()
+    var sortedMoviesArray = [Movie]()
     var categoriesItem: [CategoriesItem] = [
                                             CategoriesItem(item: "All"),
                                             CategoriesItem(item: "Action"),
+                                            CategoriesItem(item: "Adventure"),
                                             CategoriesItem(item: "Animation"),
                                             CategoriesItem(item: "Biography"),
                                             CategoriesItem(item: "Comedy"),
@@ -45,6 +48,7 @@ class MoviesViewController: UIViewController {
                                             CategoriesItem(item: "Music"),
                                             CategoriesItem(item: "Mystery"),
                                             CategoriesItem(item: "Romance"),
+                                            CategoriesItem(item: "Sci-Fi"),
                                             CategoriesItem(item: "Thriller"),
                                             CategoriesItem(item: "Western")
                                            ]
@@ -54,8 +58,7 @@ class MoviesViewController: UIViewController {
         setNavigationBarTitle(title: "Popular Now", isLargeTitle: true)
         bestMovieImage.layer.cornerRadius = 25
         categoriesCollectionView.register(cells: [CategoriesCollectionViewCell.self])
-        activityIndicatorView.type = .ballRotateChase
-        activityIndicatorView.color = UIColor(named: "AppColor") ?? .red
+        setActivityIndicator(activityIndicatorView)
         categoriesCollectionView.delegate = self
         categoriesCollectionView.dataSource = self
         pagerView.delegate = self
@@ -64,7 +67,7 @@ class MoviesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         activityIndicatorView.startAnimating()
-        MovieAPI().getData { [self] result in
+        MovieAPI().getData(genreName: "") { [self] result in
             activityIndicatorView.stopAnimating()
             switch result {
             case .success(let comingData):
@@ -73,11 +76,27 @@ class MoviesViewController: UIViewController {
             case .failure(let error):
                 print(error.localizedDescription)
             }
-            
-            bestMovieImage.setImage(for: "\(moviesDataArray[5].largeCoverImage)")
-            bestMovieName.text = moviesDataArray[5].title
-            bestMovieRate.rating = (moviesDataArray[5].rating / 2)
-            bestMovieDescription.text = moviesDataArray[5].summary
+            setTopMovieItems()
         }
+    }
+
+    @IBAction func TopRatingMovieTapped(_ sender: Any) {
+        let moviesDetailsViewController = MoviesDetailsViewController(nibName: "MoviesDetailsViewController", bundle: nil)
+        moviesDetailsViewController.comingData = sortedMoviesArray[sortedMoviesArray.count - 1]
+        navigationController?.pushViewController(moviesDetailsViewController, animated: true)
+    }
+}
+
+extension MoviesViewController {
+    
+    func setTopMovieItems() {
+        sortedMoviesArray = moviesDataArray.sorted {
+            $0.rating < $1.rating
+        }
+        let arrayCount = sortedMoviesArray.count - 1
+        bestMovieImage.setImage(for: "\(sortedMoviesArray[arrayCount].largeCoverImage)")
+        bestMovieName.text = sortedMoviesArray[arrayCount].title
+        bestMovieRate.rating = (sortedMoviesArray[arrayCount].rating / 2)
+        bestMovieDescription.text = sortedMoviesArray[arrayCount].summary
     }
 }

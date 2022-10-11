@@ -9,10 +9,10 @@ import UIKit
 
 class CategoriesCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var categoryItemName: UILabel!
+    @IBOutlet weak var categoryName: UILabel!
     @IBOutlet weak var cellView: UIView!
 
     func configureCell(model: CategoriesItem) {
-        categoryItemName.text = model.item
+        categoryName.text = model.item
     }
 }

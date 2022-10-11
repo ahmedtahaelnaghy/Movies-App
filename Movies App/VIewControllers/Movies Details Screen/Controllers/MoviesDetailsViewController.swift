@@ -45,14 +45,16 @@ class MoviesDetailsViewController: UIViewController {
     
     func coreDataSaving() {
         let movieImage = movieImage.image?.pngData()
-        let movieName = movieName.text
-        let movieRating = comingData.rating
         let entity = NSEntityDescription.entity(forEntityName: "FavoriteMoviesEntity", in: managedObjectContext)!
         let movie = NSManagedObject(entity: entity, insertInto: managedObjectContext)
         movie.setValue(movieImage, forKey: "image")
-        movie.setValue(movieName, forKey: "name")
-        movie.setValue(movieRating, forKey: "rating")
-        movie.setValue(true, forKey: "isFavorite")
+        movie.setValue(comingData.title, forKey: "name")
+        movie.setValue(comingData.rating, forKey: "rating")
+        movie.setValue(comingData.summary, forKey: "summary")
+        movie.setValue(comingData.runtime, forKey: "runtime")
+        movie.setValue(comingData.year, forKey: "year")
+        movie.setValue(comingData.id, forKey: "id")
+        movie.setValue(false, forKey: "isFavorite")
         do {
             try managedObjectContext.save()
         } catch let error as NSError {

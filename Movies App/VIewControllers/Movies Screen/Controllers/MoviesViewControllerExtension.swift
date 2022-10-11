@@ -29,23 +29,22 @@ extension MoviesViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! CategoriesCollectionViewCell
+        UserDefaults.standard.setValue(categoriesItem[indexPath.row].item, forKey: "genre")
         cell.cellView.backgroundColor = UIColor(named: "AppColor")
-        cell.categoryItemName.textColor = .white
+        cell.categoryName.textColor = .white
     }
 }
 
 // MARK: - PagerView Implementation
 extension MoviesViewController: FSPagerViewDataSource, FSPagerViewDelegate {
     
-    // MARK:- FSPagerViewDataSource
     public func numberOfItems(in pagerView: FSPagerView) -> Int {
         return moviesDataArray.count
     }
     
     public func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
         let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
-        cell.imageView?.sd_setImage(with: URL(string: "\(moviesDataArray[index].largeCoverImage)"),
-                                    placeholderImage: UIImage(named: "placeholder.png"))
+        cell.imageView?.setImage(for: moviesDataArray[index].largeCoverImage)
         cell.imageView?.contentMode = .scaleAspectFit
         cell.imageView?.clipsToBounds = true
         return cell

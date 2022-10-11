@@ -8,7 +8,12 @@
 import Foundation
 
 struct FavoritesModel {
+    var id: Int
     var image: Data
     var name: String
     var rating: Double
+    var summary: String
+    var runtime: Int
+    var year: Int
+    var isFavorite: Bool
 }
