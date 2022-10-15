@@ -27,6 +27,14 @@ class AllMoviesViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        fetchDataFromAPI()
+    }
+}
+
+// MARK: -> Fetch data from API and add Activity Indicator
+extension AllMoviesViewController {
+    
+    func fetchDataFromAPI() {
         activityIndicatorView.startAnimating()
         MovieAPI().getData(genreName: "") { [self] (result) in
             activityIndicatorView.stopAnimating()

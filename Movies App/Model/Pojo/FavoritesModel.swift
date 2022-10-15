@@ -16,4 +16,5 @@ struct FavoritesModel {
     var runtime: Int
     var year: Int
     var isFavorite: Bool
+    var genres: [String]
 }

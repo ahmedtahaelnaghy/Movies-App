@@ -26,16 +26,13 @@ struct Movie: Codable {
     let runtime: Int
     let genres: [String]
     let summary: String
-    let backgroundImage, backgroundImageOriginal, smallCoverImage, mediumCoverImage: String
     let largeCoverImage: String
+    let isFav: Bool?
 
     enum CodingKeys: String, CodingKey {
         case id, title
         case year, rating, runtime, genres, summary
-        case backgroundImage = "background_image"
-        case backgroundImageOriginal = "background_image_original"
-        case smallCoverImage = "small_cover_image"
-        case mediumCoverImage = "medium_cover_image"
         case largeCoverImage = "large_cover_image"
+        case isFav
     }
 }

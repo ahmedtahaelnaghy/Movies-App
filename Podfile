@@ -11,5 +11,6 @@ pod 'FSPagerView'
 pod 'NVActivityIndicatorView'
 pod 'Cosmos'
 pod 'SkeletonView'
+pod 'Kingfisher'
 
 end

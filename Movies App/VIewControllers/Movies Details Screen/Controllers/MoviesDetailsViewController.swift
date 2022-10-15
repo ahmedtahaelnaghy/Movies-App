@@ -23,11 +23,13 @@ class MoviesDetailsViewController: UIViewController {
     @IBOutlet weak var moviesGenreCollectionView: UICollectionView!
     
     var comingData: Movie!
+    var isFav: Bool = false
     var managedObjectContext: NSManagedObjectContext!
     var appDelegate: AppDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        swipeBack()
         setNavigationBarTitle(title: "Details", isLargeTitle: true)
         moviesGenreCollectionView.register(cells: [MovieGenreCollectionViewCell.self])
         appDelegate = (UIApplication.shared.delegate as! AppDelegate)
@@ -40,29 +42,11 @@ class MoviesDetailsViewController: UIViewController {
     }
     
     @IBAction func favoriteTaped(_ sender: Any) {
-        coreDataSaving()
-    }
-    
-    func coreDataSaving() {
-        let movieImage = movieImage.image?.pngData()
-        let entity = NSEntityDescription.entity(forEntityName: "FavoriteMoviesEntity", in: managedObjectContext)!
-        let movie = NSManagedObject(entity: entity, insertInto: managedObjectContext)
-        movie.setValue(movieImage, forKey: "image")
-        movie.setValue(comingData.title, forKey: "name")
-        movie.setValue(comingData.rating, forKey: "rating")
-        movie.setValue(comingData.summary, forKey: "summary")
-        movie.setValue(comingData.runtime, forKey: "runtime")
-        movie.setValue(comingData.year, forKey: "year")
-        movie.setValue(comingData.id, forKey: "id")
-        movie.setValue(false, forKey: "isFavorite")
-        do {
-            try managedObjectContext.save()
-        } catch let error as NSError {
-            print(error.localizedDescription)
-        }
+        setFavButtonImage()
     }
 }
 
+//MARK: -> Design with borders and set data in their places
 extension MoviesDetailsViewController {
     
     func favoriteBtnDesign() {
@@ -85,6 +69,39 @@ extension MoviesDetailsViewController {
         movieDuration.text = "\(comingData.runtime) min"
         movieName.text = comingData.title
         movieDescription.text = comingData.summary
-        movieImage.setImage(for: comingData.largeCoverImage)
+        movieImage.setImageByKF(for: comingData.largeCoverImage)
+    }
+}
+
+// MARK: -> Save in core data and change favBtn image
+extension MoviesDetailsViewController {
+    
+    func coreDataSaving() {
+        let entity = NSEntityDescription.entity(forEntityName: "FavoriteMoviesEntity", in: managedObjectContext)!
+        let movie = NSManagedObject(entity: entity, insertInto: managedObjectContext)
+        movie.setValue(comingData.largeCoverImage, forKey: "image")
+        movie.setValue(comingData.title, forKey: "name")
+        movie.setValue(comingData.rating, forKey: "rating")
+        movie.setValue(comingData.summary, forKey: "summary")
+        movie.setValue(comingData.runtime, forKey: "runtime")
+        movie.setValue(comingData.year, forKey: "year")
+        movie.setValue(comingData.id, forKey: "id")
+        movie.setValue(comingData.genres, forKey: "genres")
+        movie.setValue(true, forKey: "isFavorite")
+        do {
+            try managedObjectContext.save()
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func setFavButtonImage() {
+        if isFav {
+            favoriteBtn.setImage(UIImage(named: "Fav"), for: .normal)
+            coreDataSaving()
+        } else {
+            favoriteBtn.setImage(UIImage(named: "Fav-Fill"), for: .normal)
+        }
+        isFav.toggle()
     }
 }

@@ -20,13 +20,13 @@ class FavoritesTableViewCell: UITableViewCell {
         tableViewCellContentDesign(view: [contentDetailsView, favoriteMovieImage], cornerRadius: 30, borderWidth: 0.5, masksToBounds: true, borderColor: UIColor(named: "AppColor") ?? .green)
     }
     
-    func configureCell(model: FavoritesModel) {
-        favoriteMovieName.text = model.name
+    func configureCell(model: Movie) {
+        favoriteMovieName.text = model.title
         favoriteMovieRate.rating = model.rating / 2
-        favoriteMovieImage.image = UIImage(data: model.image)
+        favoriteMovieImage.setImage(for: model.largeCoverImage)
     }
     
-    // MARK: TableViewCell Design
+    // MARK: TableViewCell items design
     func tableViewCellContentDesign(view: [AnyObject], cornerRadius: CGFloat? = nil, borderWidth: CGFloat? = nil, masksToBounds: Bool? = nil, borderColor: UIColor? = nil) {
         _ = view.map {
             $0.layer.cornerRadius = cornerRadius ?? 0

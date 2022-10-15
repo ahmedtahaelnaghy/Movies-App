@@ -16,7 +16,8 @@ class AllMoviesCollectionViewCell: UICollectionViewCell {
     
     
     func configureCell(model: Movie) {
-        moviesImage.setImage(for: "\(model.largeCoverImage)")
+        movieRate.settings.fillMode = .precise
+        moviesImage.setImageByKF(for: "\(model.largeCoverImage)")
         movieName.text = model.title
         movieRate.rating = (model.rating / 2)
     }

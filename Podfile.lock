@@ -2,6 +2,7 @@ PODS:
   - Alamofire (5.6.2)
   - Cosmos (23.0.0)
   - FSPagerView (0.8.3)
+  - Kingfisher (7.3.2)
   - NVActivityIndicatorView (5.1.1):
     - NVActivityIndicatorView/Base (= 5.1.1)
   - NVActivityIndicatorView/Base (5.1.1)
@@ -14,6 +15,7 @@ DEPENDENCIES:
   - Alamofire
   - Cosmos
   - FSPagerView
+  - Kingfisher
   - NVActivityIndicatorView
   - SDWebImage
   - SkeletonView
@@ -23,6 +25,7 @@ SPEC REPOS:
     - Alamofire
     - Cosmos
     - FSPagerView
+    - Kingfisher
     - NVActivityIndicatorView
     - SDWebImage
     - SkeletonView
@@ -31,10 +34,11 @@ SPEC CHECKSUMS:
   Alamofire: d368e1ff8a298e6dde360e35a3e68e6c610e7204
   Cosmos: b5c6a9a637e28a061b54c8f8b1d8529d7d4db73f
   FSPagerView: 670405b2f18e2a87fa37f20b00de783e562c25a8
+  Kingfisher: 0086ad83719761ba9b2cdaf6ef4d5b4878cbae23
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   SDWebImage: 72f86271a6f3139cc7e4a89220946489d4b9a866
   SkeletonView: f5b099c708e42a278079a12bcaaf71c303be65a3
 
-PODFILE CHECKSUM: 9949b9c51372ce6906b8a87b09a79ad2d42d18c6
+PODFILE CHECKSUM: a7423ac41f44663507c1f6ee325c9034068b3d34
 
 COCOAPODS: 1.11.3

@@ -44,7 +44,7 @@ extension MoviesViewController: FSPagerViewDataSource, FSPagerViewDelegate {
     
     public func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
         let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
-        cell.imageView?.setImage(for: moviesDataArray[index].largeCoverImage)
+        cell.imageView?.setImageByKF(for: moviesDataArray[index].largeCoverImage)
         cell.imageView?.contentMode = .scaleAspectFit
         cell.imageView?.clipsToBounds = true
         return cell

@@ -30,7 +30,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yqt-pf-SA7" customClass="CosmosView" customModule="Cosmos">
+                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yqt-pf-SA7" customClass="CosmosView" customModule="Cosmos">
                                         <rect key="frame" x="0.0" y="31.666666666666671" width="361" height="21.666666666666671"/>
                                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                                         <userDefinedRuntimeAttributes>

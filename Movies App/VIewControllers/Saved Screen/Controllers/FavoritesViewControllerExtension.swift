@@ -25,6 +25,12 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let  moviesDetailsViewController = MoviesDetailsViewController(nibName: "MoviesDetailsViewController", bundle: nil)
+        moviesDetailsViewController.comingData = favoritesArray[indexPath.row]
+        navigationController?.pushViewController(moviesDetailsViewController, animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
     }
@@ -43,6 +49,7 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+// MARK: -> Add Animation for FavoritesViewController
 extension FavoritesViewController {
     
     // MARK: TableView Animation

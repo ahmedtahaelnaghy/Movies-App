@@ -13,13 +13,11 @@ import Cosmos
 class MoviesViewController: UIViewController {
     
     @IBOutlet weak var categoriesCollectionView: UICollectionView!
-    
     @IBOutlet weak var activityIndicatorView: NVActivityIndicatorView!
     @IBOutlet weak var bestMovieImage: UIImageView!
     @IBOutlet weak var bestMovieName: UILabel!
     @IBOutlet weak var bestMovieRate: CosmosView!
     @IBOutlet weak var bestMovieDescription: UILabel!
-    
     @IBOutlet weak var pagerView: FSPagerView! {
         didSet {
             self.pagerView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "cell")
@@ -87,6 +85,7 @@ class MoviesViewController: UIViewController {
     }
 }
 
+//MARK: -> Sorting coming data by rating and choose the top rate movie then display this movie in view controller.
 extension MoviesViewController {
     
     func setTopMovieItems() {
@@ -94,9 +93,10 @@ extension MoviesViewController {
             $0.rating < $1.rating
         }
         let arrayCount = sortedMoviesArray.count - 1
-        bestMovieImage.setImage(for: "\(sortedMoviesArray[arrayCount].largeCoverImage)")
+        bestMovieImage.setImageByKF(for: sortedMoviesArray[arrayCount].largeCoverImage)
         bestMovieName.text = sortedMoviesArray[arrayCount].title
         bestMovieRate.rating = (sortedMoviesArray[arrayCount].rating / 2)
+        print(sortedMoviesArray[arrayCount].rating / 2)
         bestMovieDescription.text = sortedMoviesArray[arrayCount].summary
     }
 }

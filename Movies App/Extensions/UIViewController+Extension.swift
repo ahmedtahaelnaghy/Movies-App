@@ -64,3 +64,16 @@ private extension UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor(named: "AppColor") ?? .green]
     }
 }
+
+//MARK: -> Active swipe back between screens.
+extension UIViewController {
+    func swipeBack() {
+        let swipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipe(_ :)))
+        swipeGestureRecognizer.direction = .right
+        view.addGestureRecognizer(swipeGestureRecognizer)
+    }
+    
+    @objc func swipe( _ gesture: UISwipeGestureRecognizer) {
+        self.navigationController?.popViewController(animated: true)
+    }
+}
